@@ -53,7 +53,7 @@ export default function FloatingProof() {
       
       <motion.div className="proofCard p2" style={{ x: x2, y: y2, rotateY: r2, rotateX: r1 }}>
         <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}><Brain size={14}/> 02</span>
-        <b>Applied AI</b><small>LLMs · RAG · workflows</small>
+        <b>Applied AI</b><small>Models + deterministic systems</small>
       </motion.div>
       
       <motion.div className="proofCard p3" style={{ x: x3, y: y3, rotateY: r3, rotateX: r2 }}>

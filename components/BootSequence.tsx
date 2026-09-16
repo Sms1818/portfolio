@@ -3,11 +3,9 @@ import { useEffect, useMemo, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 
 const steps = [
-  ["Loading profile", "Sahil Shitole"],
-  ["Opening folders", "Experience / Projects / Open Source"],
-  ["Getting projects ready", "Engineering work + MVPs"],
-  ["Starting apps", "Ask Sahil / Match Role"],
-  ["Opening desktop", "Sahil Workspace"],
+  ["INITIALIZING", "Sahil Workspace"],
+  ["INDEXING EVIDENCE", "Professional Work / Projects / Open Source"],
+  ["LOADING APPS", "Ready"],
 ] as const;
 
 export default function BootSequence() {
@@ -16,14 +14,14 @@ export default function BootSequence() {
   const next = params.get("next") || "/workspace";
   const [done, setDone] = useState(0);
   const [exiting, setExiting] = useState(false);
-  const delays = useMemo(()=>[340,390,430,470,520],[]);
+  const delays = useMemo(()=>[250, 300, 250],[]);
 
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) { router.replace(next); return; }
     let total = 0;
     const timers = delays.map((d, idx) => { total += d; return window.setTimeout(()=>setDone(idx+1), total); });
-    const preExit = window.setTimeout(()=>setExiting(true), total + 160);
-    const redirect = window.setTimeout(()=>router.replace(next), total + 650);
+    const preExit = window.setTimeout(()=>setExiting(true), total + 100);
+    const redirect = window.setTimeout(()=>router.replace(next), total + 400);
     return () => { timers.forEach(clearTimeout); clearTimeout(preExit); clearTimeout(redirect); };
   }, [delays,next,router]);
 

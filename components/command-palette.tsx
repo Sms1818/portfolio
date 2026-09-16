@@ -3,7 +3,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { searchPortfolio, type SearchHit } from "@/lib/brain/search";
-import { cn } from "@/lib/cn";
 
 export function CommandPalette() {
   const router = useRouter();
@@ -43,15 +42,23 @@ export function CommandPalette() {
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="mono hidden items-center gap-2 rounded-full border border-line px-3 py-1 text-[11px] text-muted hover:border-line-strong hover:text-fg sm:inline-flex"
-        aria-keyshortcuts="Meta+K"
+        style={{
+          display: 'flex', alignItems: 'center', gap: '8px', padding: '4px 12px',
+          borderRadius: '20px', border: '1px solid var(--line)', background: 'transparent',
+          fontFamily: 'var(--mono)', fontSize: '0.75rem', color: 'var(--muted)', cursor: 'pointer'
+        }}
+        title="Search (Cmd+K)"
       >
         Search
-        <kbd className="text-faint">⌘K</kbd>
+        <kbd style={{ opacity: 0.5 }}>⌘K</kbd>
       </button>
       {open ? (
         <div
-          className="fixed inset-0 z-50 flex items-start justify-center bg-[oklch(0.2_0.02_260/0.4)] p-4 pt-[12vh] backdrop-blur-sm"
+          style={{
+            position: 'fixed', inset: 0, zIndex: 50, display: 'flex', alignItems: 'flex-start',
+            justifyContent: 'center', background: 'rgba(0,0,0,0.4)', backdropFilter: 'blur(4px)',
+            padding: '12vh 20px 20px'
+          }}
           onClick={() => setOpen(false)}
           role="presentation"
         >
@@ -59,7 +66,11 @@ export function CommandPalette() {
             role="dialog"
             aria-modal="true"
             aria-label="Command palette"
-            className="w-full max-w-xl overflow-hidden rounded-2xl border border-line-strong bg-bg-elevated shadow-[var(--shadow)]"
+            style={{
+              width: '100%', maxWidth: '600px', background: 'var(--panel-strong)',
+              borderRadius: '16px', border: '1px solid var(--line)', boxShadow: 'var(--shadow)',
+              overflow: 'hidden'
+            }}
             onClick={(event) => event.stopPropagation()}
           >
             <input
@@ -81,24 +92,30 @@ export function CommandPalette() {
                 if (event.key === "Enter" && hits[active]) go(hits[active]);
               }}
               placeholder="Search Kafka, reliability, Caspian, RAG…"
-              className="w-full border-b border-line bg-transparent px-4 py-3 text-[15px] outline-none"
+              style={{
+                width: '100%', border: 'none', borderBottom: '1px solid var(--line)',
+                background: 'transparent', padding: '16px 20px', fontSize: '1rem',
+                color: 'var(--text)', outline: 'none'
+              }}
             />
-            <ul className="max-h-80 overflow-auto p-2">
+            <ul style={{ maxHeight: '320px', overflow: 'auto', padding: '8px', margin: 0, listStyle: 'none' }}>
               {hits.length === 0 ? (
-                <li className="px-3 py-6 text-sm text-muted">No matching evidence.</li>
+                <li style={{ padding: '24px 16px', fontSize: '0.9rem', color: 'var(--muted)' }}>No matching evidence.</li>
               ) : (
                 hits.map((hit, index) => (
                   <li key={hit.id}>
                     <button
                       type="button"
                       onClick={() => go(hit)}
-                      className={cn(
-                        "flex w-full flex-col rounded-xl px-3 py-2 text-left",
-                        index === active ? "bg-[var(--accent-soft)]" : "hover:bg-[var(--accent-soft)]",
-                      )}
+                      style={{
+                        width: '100%', display: 'flex', flexDirection: 'column', textAlign: 'left',
+                        padding: '12px 16px', borderRadius: '12px', border: 'none',
+                        background: index === active ? 'var(--accent-soft)' : 'transparent',
+                        cursor: 'pointer'
+                      }}
                     >
-                      <span className="text-sm text-fg">{hit.title}</span>
-                      <span className="line-clamp-1 text-xs text-muted">{hit.subtitle}</span>
+                      <span style={{ fontSize: '0.9rem', color: 'var(--text)', fontWeight: 500 }}>{hit.title}</span>
+                      <span style={{ fontSize: '0.8rem', color: 'var(--muted)', marginTop: '4px' }}>{hit.subtitle}</span>
                     </button>
                   </li>
                 ))
