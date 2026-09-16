@@ -5463,3 +5463,26 @@ button {
 .primaryChoice:hover {
   background: var(--bg);
 }
+
+.rowLink {
+  transition: 0.2s ease-in-out;
+}
+.rowLink:hover {
+  background: var(--panel);
+}
+.rowLink p {
+  transition: color 0.2s;
+}
+.rowLink:hover p {
+  color: var(--text) !important;
+}
+
+@media(max-width: 768px) {
+  .rowLink {
+    grid-template-columns: 1fr auto !important;
+    gap: 8px;
+  }
+  .rowLink h3 {
+    grid-column: 1 / -1;
+  }
+}

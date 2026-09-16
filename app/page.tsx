@@ -1,10 +1,9 @@
-import SpotlightCard from "@/components/SpotlightCard";
 import SiteHeader from "@/components/SiteHeader";
 import TransitionLink from "@/components/TransitionLink";
 import FloatingProof from "@/components/FloatingProof";
 import HomeAIActions from "@/components/HomeAIActions";
 import { experience, profile } from "@/lib/portfolio";
-import { ArrowRight, TerminalSquare, ExternalLink, ChevronRight, Clock } from "lucide-react";
+import { ArrowRight, TerminalSquare, ExternalLink } from "lucide-react";
 import Reveal from "@/components/Reveal";
 
 export default function HomePage(){
@@ -13,7 +12,6 @@ export default function HomePage(){
     <SiteHeader/>
     
     <section className="heroSection pageEnter">
-      
       <div className="heroCopy">
         <div className="availability"><span/> Open to Software Engineering & AI opportunities</div>
         <p className="heroEyebrow">{profile.name.toUpperCase()} · {profile.title.toUpperCase()}</p>
@@ -31,53 +29,47 @@ export default function HomePage(){
           <a href={`mailto:${profile.email}`}>Contact <ExternalLink size={14}/></a>
         </div>
       </div>
-
       <FloatingProof/>
     </section>
 
     <Reveal delay={100}>
-      <section className="depthChoiceSection" style={{ maxWidth: '1160px', margin: '0 auto', padding: '20px 28px 100px' }}>
-        <p className="eyebrow" style={{ marginBottom: '20px' }}>HOW MUCH TIME DO YOU HAVE?</p>
+      <section className="proofStrip" style={{ marginBottom: '60px' }}>
+        <article><small>PROFESSIONAL</small><strong>~1.5 years</strong><span>{experience.company}</span></article>
+        <article><small>IMPACT</small><strong>4 legacy apps</strong><span>consolidated into Spring Boot microservices</span></article>
+        <article><small>AUTOMATION</small><strong>50+ accounts</strong><span>supported by AR escalation workflows</span></article>
+        <article><small>OPEN SOURCE</small><strong>2 merged contributions</strong><span>Caspian SDK + AgentKit</span></article>
+      </section>
+    </Reveal>
+
+    <Reveal delay={150}>
+      <section className="depthChoiceSection" style={{ maxWidth: '1160px', margin: '0 auto', padding: '0 28px 100px' }}>
+        <p className="eyebrow" style={{ marginBottom: '24px' }}>HOW MUCH TIME DO YOU HAVE?</p>
         
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '24px' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', borderTop: '1px solid var(--line)', borderBottom: '1px solid var(--line)' }}>
           
-          <TransitionLink href="/30s" className="choiceCard" style={{ padding: '32px', borderRadius: '24px', border: '1px solid var(--line)', background: 'var(--panel)', backdropFilter: 'blur(16px)', display: 'flex', flexDirection: 'column', gap: '12px', transition: '0.3s' }}>
-            <Clock size={24} style={{ color: 'var(--accent)' }}/>
-            <h3 style={{ fontSize: '1.4rem', margin: 0 }}>30 seconds</h3>
-            <p style={{ color: 'var(--muted)', fontSize: '0.95rem', lineHeight: 1.5, margin: 0, flex: 1 }}>Recruiter summary. Core experience, impact, and stack.</p>
-            <span style={{ color: 'var(--accent)', fontSize: '0.85rem', fontWeight: 700, marginTop: '12px' }}>Read summary →</span>
+          <TransitionLink href="/30s" style={{ display: 'grid', gridTemplateColumns: '120px 1fr auto', alignItems: 'center', padding: '24px 16px', borderBottom: '1px solid var(--line)', textDecoration: 'none', color: 'var(--text)' }} className="rowLink">
+            <h3 style={{ fontSize: '1.25rem', margin: 0, fontWeight: 500 }}>30 seconds</h3>
+            <p style={{ color: 'var(--muted)', margin: 0, fontSize: '1rem' }}>Recruiter summary. Core experience, impact, and stack.</p>
+            <span style={{ color: 'var(--accent)' }}><ArrowRight size={20}/></span>
           </TransitionLink>
 
-          <TransitionLink href="/story" className="choiceCard" style={{ padding: '32px', borderRadius: '24px', border: '1px solid var(--line)', background: 'var(--panel)', backdropFilter: 'blur(16px)', display: 'flex', flexDirection: 'column', gap: '12px', transition: '0.3s' }}>
-            <ArrowRight size={24} style={{ color: 'var(--accent)' }}/>
-            <h3 style={{ fontSize: '1.4rem', margin: 0 }}>2 minutes</h3>
-            <p style={{ color: 'var(--muted)', fontSize: '0.95rem', lineHeight: 1.5, margin: 0, flex: 1 }}>An editorial tour of my professional work, PRSense, and open source.</p>
-            <span style={{ color: 'var(--accent)', fontSize: '0.85rem', fontWeight: 700, marginTop: '12px' }}>Take the tour →</span>
+          <TransitionLink href="/story" style={{ display: 'grid', gridTemplateColumns: '120px 1fr auto', alignItems: 'center', padding: '24px 16px', borderBottom: '1px solid var(--line)', textDecoration: 'none', color: 'var(--text)' }} className="rowLink">
+            <h3 style={{ fontSize: '1.25rem', margin: 0, fontWeight: 500 }}>2 minutes</h3>
+            <p style={{ color: 'var(--muted)', margin: 0, fontSize: '1rem' }}>An editorial tour of my professional work, PRSense, and open source.</p>
+            <span style={{ color: 'var(--accent)' }}><ArrowRight size={20}/></span>
           </TransitionLink>
 
-          <TransitionLink href="/boot?next=/workspace" className="choiceCard primaryChoice" style={{ padding: '32px', borderRadius: '24px', border: '1px solid var(--accent)', background: 'linear-gradient(145deg, var(--accent-soft), var(--bg))', backdropFilter: 'blur(16px)', display: 'flex', flexDirection: 'column', gap: '12px', transition: '0.3s', boxShadow: 'var(--shadow-sm)' }}>
-            <TerminalSquare size={24} style={{ color: 'var(--accent)' }}/>
-            <h3 style={{ fontSize: '1.4rem', margin: 0 }}>Explore</h3>
-            <p style={{ color: 'var(--muted)', fontSize: '0.95rem', lineHeight: 1.5, margin: 0, flex: 1 }}>Enter my engineering workspace to inspect architecture, code, and evidence.</p>
-            <span style={{ color: 'var(--accent)', fontSize: '0.85rem', fontWeight: 700, marginTop: '12px' }}>Boot workspace →</span>
+          <TransitionLink href="/boot?next=/workspace" style={{ display: 'grid', gridTemplateColumns: '120px 1fr auto', alignItems: 'center', padding: '24px 16px', textDecoration: 'none', color: 'var(--text)' }} className="rowLink">
+            <h3 style={{ fontSize: '1.25rem', margin: 0, fontWeight: 500 }}>Explore</h3>
+            <p style={{ color: 'var(--muted)', margin: 0, fontSize: '1rem' }}>Enter my engineering workspace to inspect architecture, code, and evidence.</p>
+            <span style={{ color: 'var(--accent)' }}><TerminalSquare size={20}/></span>
           </TransitionLink>
 
         </div>
       </section>
     </Reveal>
 
-    <Reveal delay={200}>
-      <section className="landingFeatured" style={{ paddingTop: '80px', borderTop: '1px solid var(--line)' }}>
-        <div><span className="eyebrow">DIRECT EVIDENCE</span><h2>Key projects & work.</h2></div>
-        <div className="featureRow">
-          <SpotlightCard><span className="featureIndex">01</span><small>PROFESSIONAL WORK</small><h3>Neopart Transit</h3><p>Backend systems, secure APIs, integrations, automation and applied AI used in day-to-day operations.</p><TransitionLink href="/story#experience">See the work <ChevronRight size={16} className="inline"/></TransitionLink></SpotlightCard>
-          <SpotlightCard><span className="featureIndex">02</span><small>ENGINEERING PROJECT</small><h3>PRSense</h3><p>Event-driven AI code review with Spring Boot, Kafka, Git, Gemini and Bitbucket.</p><TransitionLink href="/boot?next=/workspace?open=prsense">Inspect architecture <ChevronRight size={16} className="inline"/></TransitionLink></SpotlightCard>
-          <SpotlightCard><span className="featureIndex">03</span><small>OPEN SOURCE</small><h3>Caspian SDK</h3><p>Merged work in an external SDK, including protocol integration, session handling and concurrency.</p><TransitionLink href="/boot?next=/workspace?open=opensource">See open-source work <ChevronRight size={16} className="inline"/></TransitionLink></SpotlightCard>
-        </div>
-      </section>
-    </Reveal>
-
-    <Reveal delay={100}><HomeAIActions/></Reveal>
+    <Reveal delay={200}><HomeAIActions/></Reveal>
 
     <footer className="landingFooter">
       <div className="quickLinks" style={{ display: 'flex', gap: '24px', margin: 0 }}>
