@@ -1,0 +1,1 @@
+import {NextRequest,NextResponse} from "next/server"; import {evidence} from "@/lib/portfolio"; export async function GET(req:NextRequest){const q=(req.nextUrl.searchParams.get("skill")||"").toLowerCase();return NextResponse.json(q?evidence.filter(e=>[e.label,e.summary,...e.tags].join(" ").toLowerCase().includes(q)):evidence)}
