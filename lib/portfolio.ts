@@ -100,7 +100,7 @@ export const projects = [
     tech: ["AI", "Workflow Review", "Product MVP"],
     github: "https://github.com/Sms1818/FlowDoctor",
     live: "https://flow-doctor-coral.vercel.app/",
-    demo: "https://drive.google.com/file/d/16yispMfn6X-60Uviq6Uz9Q0linlyjmfm/view?usp=drive_link",
+    demo: "https://drive.google.com/file/d/1GigiyVKt3E4LtdZez3kRXz6xnhz6YIhZ/view?usp=drive_link",
   },
   {
     id: "lenny",
